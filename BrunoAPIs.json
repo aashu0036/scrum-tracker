@@ -1,0 +1,909 @@
+{
+  "name": "BrunoAPIs",
+  "version": "1",
+  "items": [
+    {
+      "type": "folder",
+      "name": "Scrum Tracker API",
+      "items": [
+        {
+          "type": "folder",
+          "name": "Admin APIs",
+          "root": {
+            "meta": {
+              "name": "Admin APIs"
+            }
+          },
+          "items": [
+            {
+              "type": "http",
+              "name": "Add Admin User",
+              "seq": 4,
+              "request": {
+                "url": "http://localhost:8080/api/admin/register",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"firstName\":\"\",\r\n    \"lastName\": \"\",\r\n    \"teamId\":1,\r\n    \"email\":\"\",\r\n    \"userName\":\"\",\r\n    \"password\":\"pass\"\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Change Password",
+              "seq": 6,
+              "request": {
+                "url": "http://localhost:8080/api/admin/users/password",
+                "method": "PATCH",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"userName\":\"john.wick\",\r\n    \"newPassword\":\"pass\"\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Create Team",
+              "seq": 7,
+              "request": {
+                "url": "http://localhost:8080/api/admin/teams",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"name\":\"New Team test\",\r\n    \"managerId\":16\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Delete Team",
+              "seq": 9,
+              "request": {
+                "url": "http://localhost:8080/api/admin/teams/{{teamId}}",
+                "method": "DELETE",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Delete User",
+              "seq": 3,
+              "request": {
+                "url": "http://localhost:8080/api/admin/users/{{userId}}",
+                "method": "DELETE",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Edit Team",
+              "seq": 8,
+              "request": {
+                "url": "http://localhost:8080/api/admin/teams/{{teamId}}",
+                "method": "PUT",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"name\":\"Infrastructure-new\",\r\n    \"managerId\":6\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Get all Projects",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8080/api/admin/projects",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Get all users",
+              "seq": 1,
+              "request": {
+                "url": "localhost:8080/api/admin/users",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Promote to Admin",
+              "seq": 5,
+              "request": {
+                "url": "http://localhost:8080/api/admin/users/{{userId}}/promote",
+                "method": "PATCH",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "environments"
+        },
+        {
+          "type": "folder",
+          "name": "Issue APIs",
+          "root": {
+            "meta": {
+              "name": "Issue APIs"
+            }
+          },
+          "items": [
+            {
+              "type": "http",
+              "name": "Create Issue",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost:8080/api/project/{{projectId}}/issues",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"title\":\"Issue1\",\r\n    \"description\":\"this is Issue 1 pro1\",\r\n    \"assigneeUserId\":12,\r\n    \"priority\":\"MEDIUM\",\r\n    \"issueType\":\"STORY\",\r\n    \"status\":\"CLOSED\",\r\n    \"sprintId\":{{sprintId}}\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Delete Issue",
+              "seq": 3,
+              "request": {
+                "url": "http://localhost:8080/api/project/{{projectId}}/issues/{{issueId}}",
+                "method": "DELETE",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Edit Issue",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8080/api/project/{{projectId}}/issues/{{issueId}}",
+                "method": "PUT",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"title\":\"Issue1-edited\",\r\n    \"description\":\"this is Issue 1- edited\",\r\n    \"assigneeUserId\":12,\r\n    \"priority\":\"MEDIUM\",\r\n    \"issueType\":\"STORY\",\r\n    \"status\":\"BLOCKED\",\r\n    \"sprintId\":8\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Update Issue Status",
+              "seq": 4,
+              "request": {
+                "url": "http://localhost:8080/api/project/{{projectId}}/issues/{{issueId}}/status",
+                "method": "PATCH",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"newStatus\":\"CLOSED\"\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "Project APIs",
+          "root": {
+            "meta": {
+              "name": "Project APIs"
+            }
+          },
+          "items": [
+            {
+              "type": "http",
+              "name": "Create New Project -team manager-admin-",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8080/api/projects",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n \"name\":\"Pro2\",\r\n \"description\":\"project no 2\",\r\n \"startDate\":\"2024-10-01\",\r\n  \"projectLeadId\":5,\r\n  \"sprintCount\":2,\r\n  \"teamId\":2\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Delete Project",
+              "seq": 4,
+              "request": {
+                "url": "http://localhost:8080/api/projects/{{projectId}}",
+                "method": "DELETE",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Edit Project",
+              "seq": 3,
+              "request": {
+                "url": "http://localhost:8080/api/projects/{{projectId}}",
+                "method": "PUT",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n \"name\":\"Pro-1\",\r\n \"description\":\"this is the 1st project\",\r\n \"startDate\":\"2024-10-01\",\r\n  \"projectLeadId\":4,\r\n  \"sprintCount\":8,\r\n  \"teamId\":3\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Get Project Issues",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost:8080/api/projects/{{projectId}}/issues",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Get Project Report",
+              "seq": 5,
+              "request": {
+                "url": "http://localhost:8080/api/projects/{{projectId}}/report",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Send Project Report",
+              "seq": 6,
+              "request": {
+                "url": "http://localhost:8080/api/projects/{{projectId}}/get",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "Public APIs",
+          "root": {
+            "meta": {
+              "name": "Public APIs"
+            }
+          },
+          "items": [
+            {
+              "type": "http",
+              "name": "Login -with Admin User creds-",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8080/api/public/login",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"userName\":\"charlie.davis\",\r\n    \"password\":\"pass\"\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Login",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost:8080/api/public/login",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"userName\":\"david.miller\",\r\n    \"password\":\"pass\"\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "New Request",
+              "seq": 4,
+              "request": {
+                "url": "http://localhost:8080/api/public/health-check",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Register User",
+              "seq": 3,
+              "request": {
+                "url": "http://localhost:8080/api/public/register",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"firstName\":\"Test\",\r\n    \"lastName\": \"WithoutTeam\",\r\n    \"email\":\"testwithoutteam@test.com\",\r\n    \"userName\":\"no.team\",\r\n    \"password\":\"pass\"\r\n\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "Resiter User",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "Sprint APIs",
+          "root": {
+            "meta": {
+              "name": "Sprint APIs"
+            }
+          },
+          "items": [
+            {
+              "type": "http",
+              "name": "Get Sprint  Issues",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost:8080/api/sprints/{{sprintId}}/issues",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Get Sprint Report",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8080/api/sprints/{{sprintId}}/report",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "Team APIs",
+          "root": {
+            "meta": {
+              "name": "Team APIs"
+            }
+          },
+          "items": [
+            {
+              "type": "http",
+              "name": "Get Team Members",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8080/api/teams/{{teamId}}/members",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Get Team Projects",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost:8080/api/teams/{{teamId}}/projects",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "User APIs",
+          "root": {
+            "meta": {
+              "name": "User APIs"
+            }
+          },
+          "items": [
+            {
+              "type": "http",
+              "name": "Change User Password",
+              "seq": 3,
+              "request": {
+                "url": "http://localhost:8080/api/users/{{userId}}/password",
+                "method": "PATCH",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\r\n    \"userName\":\"david.miller\",\r\n    \"newPassword\":\"pass\"\r\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Get User Info",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost:8080/api/users/{{userId}}",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Get User Issues",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8080/api/users/{{userId}}/issues",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "BrunoAPIs",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "presets": {
+      "requestType": "http",
+      "requestUrl": "http://localhost:8080"
+    }
+  }
+}

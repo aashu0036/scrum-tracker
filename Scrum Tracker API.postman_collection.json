@@ -1,0 +1,574 @@
+{
+	"info": {
+		"_postman_id": "d4b62c7b-1e90-475a-98e5-4e157b04003d",
+		"name": "Scrum Tracker API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "18438546"
+	},
+	"item": [
+		{
+			"name": "Public APIs",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"david.miller\",\r\n    \"password\":\"pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/public/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Login (with Admin User creds)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"charlie.davis\",\r\n    \"password\":\"pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/public/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Test\",\r\n    \"lastName\": \"WithoutTeam\",\r\n    \"email\":\"testwithoutteam@test.com\",\r\n    \"userName\":\"no.team\",\r\n    \"password\":\"pass\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/public/register",
+						"description": "Resiter User"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/public/health-check"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin APIs",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/admin/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Projects",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/admin/projects"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/api/admin/users/{{userId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Admin User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"\",\r\n    \"lastName\": \"\",\r\n    \"teamId\":1,\r\n    \"email\":\"\",\r\n    \"userName\":\"\",\r\n    \"password\":\"pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/admin/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Promote to Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": "localhost:8080/api/admin/users/{{userId}}/promote"
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"john.wick\",\r\n    \"newPassword\":\"pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/admin/users/password"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Team",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"New Team test\",\r\n    \"managerId\":16\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/admin/teams"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Team",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Infrastructure-new\",\r\n    \"managerId\":6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/admin/teams/{{teamId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Team",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/api/admin/teams/{{teamId}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Issue APIs",
+			"item": [
+				{
+					"name": "Create Issue",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Issue1\",\r\n    \"description\":\"this is Issue 1 pro1\",\r\n    \"assigneeUserId\":12,\r\n    \"priority\":\"MEDIUM\",\r\n    \"issueType\":\"STORY\",\r\n    \"status\":\"CLOSED\",\r\n    \"sprintId\":{{sprintId}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/project/{{projectId}}/issues"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Issue",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Issue1-edited\",\r\n    \"description\":\"this is Issue 1- edited\",\r\n    \"assigneeUserId\":12,\r\n    \"priority\":\"MEDIUM\",\r\n    \"issueType\":\"STORY\",\r\n    \"status\":\"BLOCKED\",\r\n    \"sprintId\":8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/project/{{projectId}}/issues/{{issueId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Issue",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/api/project/{{projectId}}/issues/{{issueId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Issue Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newStatus\":\"CLOSED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/project/{{projectId}}/issues/{{issueId}}/status"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project APIs",
+			"item": [
+				{
+					"name": "Get Project Issues",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/projects/{{projectId}}/issues"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Project (team manager/admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\":\"Pro2\",\r\n \"description\":\"project no 2\",\r\n \"startDate\":\"2024-10-01\",\r\n  \"projectLeadId\":5,\r\n  \"sprintCount\":2,\r\n  \"teamId\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/projects"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Project",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\":\"Pro-1\",\r\n \"description\":\"this is the 1st project\",\r\n \"startDate\":\"2024-10-01\",\r\n  \"projectLeadId\":4,\r\n  \"sprintCount\":8,\r\n  \"teamId\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/projects/{{projectId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/api/projects/{{projectId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/projects/{{projectId}}/report"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Project Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/projects/{{projectId}}/get"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sprint APIs",
+			"item": [
+				{
+					"name": "Get Sprint  Issues",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/sprints/{{sprintId}}/issues"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sprint Report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/sprints/{{sprintId}}/report"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Team APIs",
+			"item": [
+				{
+					"name": "Get Team Projects",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/teams/{{teamId}}/projects"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Team Members",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/teams/{{teamId}}/members"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User APIs",
+			"item": [
+				{
+					"name": "Get User Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/users/{{userId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Issues",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/users/{{userId}}/issues"
+					},
+					"response": []
+				},
+				{
+					"name": "Change User Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"david.miller\",\r\n    \"newPassword\":\"pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/users/{{userId}}/password"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
