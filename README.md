@@ -2,8 +2,6 @@
 # **Scrum Tracker**
 
 
-
-
 ## **Overview**
 
 Scrum Tracker is a RESTful application built with Spring Boot for agile development using the Scrum framework. It helps manage users, teams, projects, sprints, and issues while offering project and sprint health metrics.
@@ -62,6 +60,20 @@ mvn spring-boot:run
 ```
 7. Access the Swagger API documentation:
 http://localhost:8080/swagger-ui.html
+
+
+## **Future Enhancements**
+
+While the current version of the Scrum Tracker covers the essential features, there are a few areas planned for improvement:
+
+- **Project and Sprint Health**: Expanding the current health tracking metrics to include more comprehensive insights.
+- **Spring Boot Tests**: Implementing **unit tests** to ensure the robustness and reliability of the application.
+- **Role Management**: Enhancing the role-based access control by making **user roles more fine-grained** (e.g., adding specific permissions for managers, project leads, etc.).
+- **Scheduled Email Service**: Implementing a **scheduled service** to regularly send **health reports** about project and sprint status to managers and project leads, keeping them updated without manual intervention.
+- **Frontend Integration**: While the application is currently backend-focused, eventually adding a **basic frontend** could provide a more user-friendly interface.
+
+These enhancements will be implemented as time allows, helping to improve the user experience, testing coverage, and overall system functionality.
+
 ## **Author**
 
 This project is developed and maintained by [Aashu Khare](https://github.com/aashu0036)

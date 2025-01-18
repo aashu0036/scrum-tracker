@@ -54,7 +54,7 @@ public class TestController {
 	@PostMapping("/testmail")
 	@ResponseBody
 	public ResponseEntity<String> sendMail(@RequestBody Map<String, Object> request){
-		emailService.sendEmail("aditya.khare0027@gmail.com", "TEST email sender API", (String)request.get("body"));
+		emailService.sendEmail("test@test.com", "TEST email sender API", (String)request.get("body"));
 		return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
 	
