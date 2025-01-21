@@ -4,10 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.springboot.scrum_tracker.dto.ProjectHealthReport;
 import com.springboot.scrum_tracker.dto.ProjectRequestDto;
 import com.springboot.scrum_tracker.exception.CustomProjectException;
 import com.springboot.scrum_tracker.exception.ResourceNotFoundException;
@@ -18,17 +21,15 @@ import com.springboot.scrum_tracker.model.Team;
 import com.springboot.scrum_tracker.model.User;
 import com.springboot.scrum_tracker.repository.ProjectRepository;
 import com.springboot.scrum_tracker.repository.SprintRepository;
-import com.springboot.scrum_tracker.repository.TeamRepository;
-import com.springboot.scrum_tracker.repository.UserRepository;
-import com.springboot.scrum_tracker.service.EmailService;
-import com.springboot.scrum_tracker.service.ProjectReportService;
 import com.springboot.scrum_tracker.service.ProjectService;
 import com.springboot.scrum_tracker.service.SprintService;
 import com.springboot.scrum_tracker.service.TeamService;
 import com.springboot.scrum_tracker.service.UserService;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @Transactional
 public class ProjectServiceImpl implements ProjectService {
@@ -48,12 +49,10 @@ public class ProjectServiceImpl implements ProjectService {
 	@Autowired
 	private SprintRepository sprintRepo;
 	
-
-
 	
-
 	@Override
 	@Transactional
+	@CacheEvict(cacheNames = "teamProjects",  key="#projectRequestDto.teamId")
 	public Project addProjectAndCreateSprints(ProjectRequestDto projectRequestDto, String username) {
 		User requestUser=userService.findByUsername(username);
 		Team projectTeam=teamService.findResourceById(projectRequestDto.getTeamId());
@@ -86,12 +85,18 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
+	@Cacheable(value="projects", key="'all'")
 	public List<Project> getAllProjects() {
+		log.info("Cache miss for projects::all");
 		return projectRepo.findAll();
 	}
 
 	@Override
 	@Transactional
+	@Caching(
+		evict = {@CacheEvict(cacheNames = "teamProjects",  key="#projectRequestDto.teamId")},
+		put = {@CachePut(cacheNames = "project",  key="#projectId")}
+	)
 	public Project editProjectDetails(ProjectRequestDto projectRequestDto, Integer projectId, String username) {
 		User requestUser=userService.findByUsername(username);
 		Project project=findResourceById(projectId);
@@ -131,17 +136,22 @@ public class ProjectServiceImpl implements ProjectService {
 			}
 			project.setSprintCount(newSprintCount);
 		}
-		
 		return projectRepo.save(project);
-		
 	}
 
 	@Override
+	@Cacheable(cacheNames = "project", key="#projectId")
 	public Project findResourceById(Integer projectId) {
+		log.info("Cache miss for project::{}", projectId);
 		return projectRepo.findById(projectId).orElseThrow(() -> new ResourceNotFoundException("Project", "id", projectId));
 	}
 
 	@Override
+	
+	@Caching(
+			evict= {@CacheEvict(cacheNames = "teamProjects",  allEntries = true),
+					@CacheEvict(cacheNames="project", key="#projectId")}
+	)
 	public void deleteProject(Integer projectId, String username) {
 		User requestUser=userService.findByUsername(username);
 		Project project=findResourceById(projectId);

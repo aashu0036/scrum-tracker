@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +30,9 @@ import com.springboot.scrum_tracker.service.UserService;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @Transactional
 public class IssueServiceImpl implements IssueService {
@@ -44,6 +50,7 @@ public class IssueServiceImpl implements IssueService {
 	private SprintService sprintService;
 
 	@Override
+	@CacheEvict(cacheNames = "projectIssues", key = "#projectId")
 	public Issue addIssue(IssueRequestDto issueDto, Integer projectId) {
 		Issue newIssue=new Issue();
 		
@@ -78,13 +85,17 @@ public class IssueServiceImpl implements IssueService {
 	}
 
 	@Override
+	//not caching issues by user since user may be assigned issues from multiple projects
+	//and update to one issue in one project will require evicton of all issues for all users
 	public List<Issue> getIssuesByAssignee(Integer assigneeUserId) {
 		User user=userService.findResourceById(assigneeUserId);
 		return issueRepo.findByAssignee(user);
 	}
 
 	@Override
+	@Cacheable(value="projectIssues", key="#projectId", unless = "#result==null or #result.size==0")
 	public List<Issue> getIssuesByProject(Integer projectId) {
+		log.info("Cache miss for projectIssues::{}", projectId);
 		Project project=projectRepo.findById(projectId).orElseThrow(()-> new ResourceNotFoundException("Project", "id", projectId));
 		return issueRepo.findByProject(project);
 	}
@@ -95,6 +106,7 @@ public class IssueServiceImpl implements IssueService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames = "projectIssues", key = "#projectId", beforeInvocation = false)
 	public Issue editIssueDetails(IssueRequestDto issueRequestDto, Integer issueId, Integer projectId) {
 		Issue issue=findResourceById(issueId);
 		validateIssueBelongsToProject(issue, projectId);
@@ -118,6 +130,7 @@ public class IssueServiceImpl implements IssueService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames = "projectIssues", key = "#projectId", beforeInvocation = false)
 	public void deleteIssue(Integer issueId, Integer projectId) {
 		Issue issue=findResourceById(issueId);
 		validateIssueBelongsToProject(issue, projectId);
@@ -128,6 +141,7 @@ public class IssueServiceImpl implements IssueService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames = "projectIssues", key = "#projectId", beforeInvocation = false)
 	public Issue updateIssueStatus(Integer issueId, Integer projectId, Status status) {
 		Issue issue=findResourceById(issueId);
 		validateIssueBelongsToProject(issue, projectId);

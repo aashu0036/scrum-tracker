@@ -3,6 +3,8 @@ package com.springboot.scrum_tracker.serviceimpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,8 +32,9 @@ import com.springboot.scrum_tracker.service.UserService;
 import com.springboot.scrum_tracker.utils.JwtUtils;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -61,6 +64,7 @@ public class UserServiceImpl implements UserService {
 	private UserDetailsService userDetailsService;
 	
 	@Override
+	@CacheEvict(cacheNames = "users", key="'all'", beforeInvocation = false)
 	public User addUser(UserDto userDto) {
 		User newUser=new User();
 		User existingUser=userRepo.findByUserName(userDto.getUserName());
@@ -104,6 +108,7 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
+	@CacheEvict(cacheNames = "users", key="'all'", beforeInvocation = false)
 	public User deleteUser(Integer userId) {
 		User user=findResourceById(userId);
 		Team userManagedTeam=teamRepo.findByManagerUserName(user.getUserName());
@@ -130,6 +135,7 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
+	@CacheEvict(cacheNames = "users", key="'all'", beforeInvocation = false)
 	public User addAdminUser(UserDto userDto) {
 		User newAdminUser=addUser(userDto);
 		newAdminUser.setRole(Role.ADMIN);
@@ -140,7 +146,9 @@ public class UserServiceImpl implements UserService {
 	
 	
 	@Override
+	@Cacheable(value="users", key="'all'")
 	public List<User> getAllUsers() {
+		log.info("Cache miss for users:all");
 		return userRepo.findAll();
 	}
 

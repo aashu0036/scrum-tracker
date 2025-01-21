@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.springboot.scrum_tracker.dto.ProjectHealthReport;
@@ -17,7 +16,6 @@ import com.springboot.scrum_tracker.model.User;
 import com.springboot.scrum_tracker.repository.IssueRepository;
 import com.springboot.scrum_tracker.repository.SprintRepository;
 import com.springboot.scrum_tracker.service.EmailService;
-import com.springboot.scrum_tracker.service.IssueService;
 import com.springboot.scrum_tracker.service.ProjectReportService;
 import com.springboot.scrum_tracker.service.ProjectService;
 import com.springboot.scrum_tracker.service.UserService;
@@ -37,9 +35,6 @@ public class ProjectReportServiceImpl implements ProjectReportService {
 	
 	@Autowired
 	private SprintRepository sprintRepo;
-
-	@Autowired
-	private IssueService issueService;
 	
 	@Autowired
 	private EmailService emailService;

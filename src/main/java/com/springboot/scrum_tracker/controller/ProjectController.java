@@ -72,6 +72,14 @@ public class ProjectController {
 		return new ResponseEntity<>(project, HttpStatus.CREATED);
 	}
 	
+	@GetMapping("/{projectId}")
+	@Operation(summary = "View Project Details")
+	public ResponseEntity<Project> getProjectDetails(@PathVariable Integer projectId){
+		log.debug("Entering getProjectDetails method");
+		Project project=projectService.findResourceById(projectId);
+		return new ResponseEntity<>(project, HttpStatus.OK);
+	}
+	
 	@PutMapping("/{projectId}")
 	@Operation(summary = "Edit a Project (for Team Manager, Project Lead and Admin)")
 	public ResponseEntity<Project> editProjectDetails(@RequestBody @Valid ProjectRequestDto projectRequestDto, @PathVariable Integer projectId,
