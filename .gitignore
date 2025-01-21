@@ -50,3 +50,6 @@ build/
 # Ignore OS-specific files
 .DS_Store
 Thumbs.db
+
+# Ignore logback.out.xml
+logback.out.xml

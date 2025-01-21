@@ -1,6 +1,10 @@
 
 # **Scrum Tracker**
 
+### 🚀 What's New?
+Some fresh updates for **Scrum Tracker**! Here's what’s been added recently:  
+
+- ⚡ **Redis Caching** is now integrated! Queries are faster, and the database gets a break. (Added: 2025-01-21) 
 
 ## **Overview**
 
@@ -14,6 +18,7 @@ Scrum Tracker is a RESTful application built with Spring Boot for agile developm
 - Centralized exception handling for consistent error responses.
 - Logging with SLF4J and Logback.
 - API documentation with Swagger.
+- Redis Cache for faster responses
 
 
 ## **Technologies Used**

@@ -3,14 +3,14 @@
     <appender name = "myConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
-                %d{yy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -======-- %msg %n
+                %d{yy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} ------ %msg %n
             </pattern>
         </encoder>
     </appender>
 
     <appender name = "myFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>
-            logs/demoApp.log
+            logs/ScrumTracker.log
         </file>
         
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
@@ -21,7 +21,7 @@
         
         <encoder>
             <pattern>
-                %d{yy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -xxxxxxxx- %msg %n
+                %d{yy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} ------ %msg %n
             </pattern>
         </encoder>
     </appender>
